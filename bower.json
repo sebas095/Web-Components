@@ -1,0 +1,21 @@
+{
+  "name": "web-components",
+  "homepage": "https://github.com/sebas095/Web-Components",
+  "authors": [
+    "Sebastian Duque Restrepo <sebas_tian_95@hotmail.com>"
+  ],
+  "description": "Tutorial about web coomponents",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "webcomponentsjs": "^0.7.22",
+    "polymer": "^1.5.0"
+  }
+}

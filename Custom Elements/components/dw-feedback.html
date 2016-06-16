@@ -1,0 +1,33 @@
+<template>
+  <style>
+    p {
+      background-color: greenyellow;
+      font-family: trebuchet ms, tahoma, verdana, arial, sans-serif;
+      padding: 10px;
+    }
+  </style>
+  <p></p>
+</template>
+<script>
+  var prototipo = Object.create(HTMLElement.prototype);
+  var templateContent = document._currentScript.ownerDocument.querySelector('template').content;
+
+  prototipo.createdCallback = function() {
+    var clone = document.importNode(templateContent, true);
+
+    var elementoContent = this.innerHTML;
+    var parrafo = clone.querySelector('p');
+    parrafo.innerHTML = elementoContent;
+
+    this.createShadowRoot().appendChild(clone);
+
+    if (this.hasAttribute("color")) {
+      var color = this.getAttribute("color");
+      parrafo.style.color = color;
+    }
+  };
+
+  document.registerElement('dw-feedback', {
+    prototype: prototipo
+  });
+</script>
