@@ -1,0 +1,16 @@
+<script>
+  var prototipo = Object.create(HTMLButtonElement.prototype);
+
+  prototipo.createdCallback = function() {
+    this.textContent = "Hola Mundo botón!";
+    this.addEventListener('click', function() {
+      alert('Boton con Custom Element Extendido');
+    });
+  }
+
+  document.registerElement('dw-botonholamundo', {
+    prototype: prototipo,
+    extends: 'button'
+  });
+
+</script>
