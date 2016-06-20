@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>HTML Imports</title>
+    <link rel="import" href="import.html" id="miImport">
+  </head>
+  <body>
+    <script>
+      // Accedo al elemento import con id=miImport
+      var importado = document.querySelector('#miImport');
+
+      // Accedo al contenido del import
+      var contenidoImport = importado.import;
+
+      // Accedo a un elemento en concreto del contenido del import
+      var elementoDentroImport = contenidoImport.querySelector('div');
+
+      // Inyecto ese contenido del import en la página
+      document.body.appendChild(elementoDentroImport);
+    </script>
+  </body>
+</html>

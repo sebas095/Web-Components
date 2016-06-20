@@ -1,0 +1,33 @@
+<script>
+  (function() {
+    function recortar(cadena, len) {
+      if (cadena.length <= len) {
+        return cadena;
+      }
+
+      var recortada = cadena.substr(0, len);
+      return recortada.substr(0, Math.min(recortada.length, recortada.lastIndexOf(' '))) + '...';
+    }
+
+    // Prototipo de elemento, a partir del elemento base
+    var prototipo = Object.create(HTMLElement.prototype);
+
+    // Cuando se cree el elemento
+    prototipo.createdCallback = function() {
+      // Guardo el contenido del elemento
+      var cadena = this.textContent;
+      // Guardo la longitud deseada
+      var len = this.getAttribute('len');
+
+      // lo recorto
+      cadena = recortar(cadena, len);
+      // Cambio el texto que hay en este elemento
+      this.textContent = cadena;
+    };
+
+    // Registro el componente "romper-cadena"
+    document.registerElement('romper-cadena', {
+      prototype: prototipo
+    });
+  })();
+</script>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Shadow DOM</title>
+  </head>
+  <body>
+    <div id="elem"></div>
+
+    <template >
+      <p>Esto es un template!!</p>
+    </template>
+
+    <script>
+      // accedo al template
+      var template = document.querySelector('template').content;
+
+      // Clono el contenido del template
+      var clone = template.cloneNode(true);
+
+      // Accedo a un elemento
+      var elem = document.querySelector('#elem');
+
+      // Creo el shadow root
+      var shadow = elem.createShadowRoot();
+
+      // Le añado el clon del template
+      shadow.appendChild(clone);
+    </script>
+  </body>
+</html>

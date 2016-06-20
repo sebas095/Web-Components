@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Shadow DOM</title>
+    <style>
+      p {
+        color: red;
+      }
+
+      ::shadow p {
+        color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="elem"></div>
+    <script>
+      // Un elemento de la página
+      var elem = document.querySelector('#elem');
+
+      // Convertimos ese elemento en un "shadow root"
+      var shadow = elem.createShadowRoot();
+
+      // Cambiamos el contenido de ese elemento, esto será creado como "shadow DOM"
+      shadow.innerHTML = "<p>Esto va al shadow DOM</p>"
+    </script>
+  </body>
+</html>
