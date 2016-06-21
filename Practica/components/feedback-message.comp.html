@@ -1,0 +1,48 @@
+<template>
+  <style>
+    p {
+      background-color: azure;
+      font-family: trebuchet ms, tahoma, verdana, arial, sans-serif;
+      padding: 10px;
+    }
+  </style>
+  <p></p>
+</template>
+<script>
+  // Creamos el prototipo de nuestro nuevo elemento
+  // basándonos en el prototipo del elemento html genérico
+  var prototipo = Object.create(HTMLElement.prototype);
+
+  // Accedo al template definido antes
+  var templateContent = document._currentScript.ownerDocument.querySelector('template').content;
+
+  // definimos un callback a ejecutar al crear el elemento
+  prototipo.createdCallback = function() {
+    // Guardo el contenido del elemento y luego lo borro
+    var elementContent = this.innerHTML;
+    this.innerHTML = "";
+
+    // Clono el template
+    var clone = document.importNode(templateContent, true);
+
+    // Accedo al párrafo de ese clon del template
+    var parrafo = clone.querySelector('p');
+
+    // Cambio el contenido de ese párrafo con el contenido del elemento
+    parrafo.innerHTML = elementContent;
+
+    // Si tiene el atributo color, lo coloco como estilo del párrafo
+    if (this.hasAttribute('color')) {
+      var color = this.getAttribute('color');
+      parrafo.style.color = color;
+    }
+
+    // Añado el clon del template como shadow DOM
+    this.createShadowRoot().appendChild(clone);
+  };
+
+  // Registro el componente con el nombre "feedback-message"
+  document.registerElement('feedback-message', {
+    prototype: prototipo
+  });
+</script>
