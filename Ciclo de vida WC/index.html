@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ciclo de Vida de un Web Component</title>
+    <link rel="import" href="components/ciclo-vida.html">
+  </head>
+  <body>
+    <h1>Ciclo de Vida de un Web Component</h1>
+    <p>Para comenzar vamos a describir los estados de un componente que definen su ciclo de vida:</p>
+    <ul>
+      <li>
+        <strong>Created:</strong> Ocurre cuando el elemento se crea, pero ojo, no tiene que ver con que el elemento se muestre.
+        Es como su instanciación en memoria de Javascript. Cada elemento de un tipo de custom element generado,
+        lanza el método created
+      </li>
+      <li>
+        <strong>Attached:</strong> Ocurre cuando un elemento que había en la memoria de Javascript se inyecta dentro de un documento,
+        o sea, pasa a formar parte del DOM de la página.
+      </li>
+      <li>
+        <strong>Detached:</strong> Ocurre cuando un elemento se quita del DOM, se retira del documento y por tanto desaparece de la página.
+      </li>
+      <li>
+        <strong>Atribute Changed:</strong> Ocurre cuando uno de sus atributos cambia de valor.
+      </li>
+    </ul>
+
+    <ciclo-de-vida></ciclo-de-vida>
+    <center>
+      <button id="cambiaAtr">Cambia Atributo</button>
+      <button id="quitarDOM">quitar el elemento del DOM</button>
+      <button id="crearElemento">crear un elemento,  solo en memoria</button>
+    </center>
+    <script>
+      window.onload = function() {
+        document.getElementById('cambiaAtr').addEventListener('click', function() {
+          document.querySelector('ciclo-de-vida').setAttribute('data-test', 'test-value');
+        });
+
+        document.getElementById('quitarDOM').addEventListener('click', function() {
+          document.body.removeChild(document.querySelector('ciclo-de-vida'));
+        });
+
+        document.getElementById('crearElemento').addEventListener('click', function() {
+          document.createElement('ciclo-de-vida');
+        });
+      }
+  </script>
+  </body>
+</html>
